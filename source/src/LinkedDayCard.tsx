@@ -131,6 +131,7 @@ function RailwayDetails({ onShow }: { onShow: (stationIndex?: number) => void })
       <a target="_blank" rel="noopener noreferrer" className="text-accent-on underline" href={directions(rail.transfer.japanese, rail.stations[0].japanese)}>JR马堀 → 小火车龟冈 · 步行导航 ↗</a>
       <a target="_blank" rel="noopener noreferrer" className="text-accent-on underline" href={directions(rail.stations[3].japanese, '常寂光寺 京都')}>小火车嵯峨 → 常寂光寺 · 步行导航 ↗</a>
     </div>
+    <p className="mt-2 text-content-faint">轨道与站位：<a className="underline" href={rail.sourceUrl} target="_blank" rel="noopener noreferrer">日本国土交通省铁路数据（2024）↗</a></p>
   </div>
 }
 
