@@ -20,6 +20,7 @@ const client = path.join(upstream, 'client');
 await cp(path.join(source, 'src'), path.join(client, 'src/pagesStatic'), { recursive: true });
 await cp(path.join(source, 'pages.html'), path.join(client, 'pages.html'));
 await cp(path.join(source, 'vite.pages.config.js'), path.join(client, 'vite.pages.config.js'));
+await cp(path.join(source, 'tsconfig.pages.json'), path.join(client, 'tsconfig.pages.json'));
 const result = path.resolve(upstream, '../github-pages-trek');
 execFileSync(process.execPath, [path.join(upstream, 'node_modules/vite/bin/vite.js'), 'build', '--config', 'vite.pages.config.js'], { cwd: client, stdio: 'inherit', env: { ...process.env, NODE_OPTIONS: '--max-old-space-size=6144' } });
 const rebuilt = path.join(root, 'rebuilt');

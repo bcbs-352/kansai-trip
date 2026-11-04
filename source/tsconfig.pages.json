@@ -1,0 +1,4 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["src/pagesStatic", "src/vite-env.d.ts"]
+}

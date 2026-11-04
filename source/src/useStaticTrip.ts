@@ -6,9 +6,9 @@ import snapshot from './snapshot.json'
 import plan from './trip.json'
 
 export const trip = plan
-export const data = snapshot as unknown as ComponentProps<typeof SharedPlanView>['data'] & {
+export const data = snapshot as unknown as Omit<ComponentProps<typeof SharedPlanView>['data'], 'days' | 'reservations'> & {
   trip: { title: string; description: string; start_date: string; end_date: string }
-  days: Day[]
+  days: (Day & { day_number: number })[]
   reservations: Reservation[]
 }
 type LocalState = { notes: Record<string, string>; tasks: Record<string, boolean>; costs: Record<string, boolean> }
