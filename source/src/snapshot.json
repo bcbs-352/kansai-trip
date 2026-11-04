@@ -1,0 +1,1076 @@
+{
+  "trip": {
+    "title": "关西旅行计划",
+    "description": "2026年关西旅行。30日在宇治至少停留到中午；岚山改为12月1日，12:30龟冈出发的小火车为固定安排。其余游览时间为建议，候选景点不代表预订。",
+    "start_date": "2026-11-28",
+    "end_date": "2026-12-02",
+    "currency": "JPY"
+  },
+  "days": [
+    {
+      "id": 1,
+      "trip_id": 1,
+      "day_number": 1,
+      "date": "2026-11-28",
+      "title": "抵达关西机场，前往奈良",
+      "notes": "13:20 抵达关西机场。出关后选择巴士或铁路，到奈良入住，按时间和体力安排夜游。"
+    },
+    {
+      "id": 2,
+      "trip_id": 1,
+      "day_number": 2,
+      "date": "2026-11-29",
+      "title": "奈良上午游览，下午去宇治",
+      "notes": "候选顺序：东大寺 → 二月堂 → 若草山一重目。宇治当天路线由你自行安排，需确定最晚抵达时间。"
+    },
+    {
+      "id": 3,
+      "trip_id": 1,
+      "day_number": 3,
+      "date": "2026-11-30",
+      "title": "宇治至中午，午后前往京都",
+      "notes": "上午和中午继续留在宇治，游览由你安排；午后到乌丸御池入住，晚间可选永观堂等夜游。"
+    },
+    {
+      "id": 4,
+      "trip_id": 1,
+      "day_number": 4,
+      "date": "2026-12-01",
+      "title": "嵯峨野小火车与岚山，晚间临空城",
+      "notes": "退房寄存后，上午可选东福寺；12:30从小火车龟冈出发，12:56抵达嵯峨，下午游岚山，回酒店取行李后去临空城。"
+    },
+    {
+      "id": 5,
+      "trip_id": 1,
+      "day_number": 5,
+      "date": "2026-12-02",
+      "title": "早班机返程，经上海到福州",
+      "notes": "09:20关西机场T1起飞，11:00北京时间到浦东，15:55转机，17:45抵达福州。"
+    }
+  ],
+  "places": [
+    {
+      "id": 1,
+      "key": "kix",
+      "name": "关西国际机场 T1",
+      "lat": 34.4358,
+      "lng": 135.2438,
+      "address": "Kansai International Airport Terminal 1",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 2,
+      "key": "naraStation",
+      "name": "JR 奈良站",
+      "lat": 34.6805,
+      "lng": 135.8189,
+      "address": "JR Nara Station",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 3,
+      "key": "hotel",
+      "name": "LOCO Minamiichi",
+      "lat": 34.6796,
+      "lng": 135.8302,
+      "address": "LOCO Minamiichi 10-4 Minamiichicho Nara",
+      "description": "地址附近示意，出发前核对具体入口。",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 4,
+      "key": "pond",
+      "name": "猿泽池",
+      "lat": 34.6807,
+      "lng": 135.8318,
+      "address": "Sarusawa Pond Nara",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 5,
+      "key": "ukimido",
+      "name": "浮见堂",
+      "lat": 34.6806,
+      "lng": 135.8396,
+      "address": "Ukimido Nara",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 6,
+      "key": "kofukuji",
+      "name": "兴福寺",
+      "lat": 34.6832,
+      "lng": 135.8315,
+      "address": "Kofukuji Nara",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 7,
+      "key": "todaiji",
+      "name": "东大寺大佛殿",
+      "lat": 34.689,
+      "lng": 135.8398,
+      "address": "Todaiji Daibutsuden Nara",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 8,
+      "key": "nigatsudo",
+      "name": "二月堂",
+      "lat": 34.6895,
+      "lng": 135.8446,
+      "address": "Todaiji Nigatsudo",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 9,
+      "key": "wakakusa",
+      "name": "若草山北入口",
+      "lat": 34.6868,
+      "lng": 135.8482,
+      "address": "Mount Wakakusa North Gate Nara",
+      "description": "地址附近示意，出发前核对具体入口。",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 10,
+      "key": "uji",
+      "name": "JR 宇治站",
+      "lat": 34.8896,
+      "lng": 135.8008,
+      "address": "JR Uji Station Kyoto",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 11,
+      "key": "kyoto",
+      "name": "京都站",
+      "lat": 34.9858,
+      "lng": 135.7588,
+      "address": "Kyoto Station",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 12,
+      "key": "togetsu",
+      "name": "渡月桥",
+      "lat": 35.0135,
+      "lng": 135.6779,
+      "address": "Togetsukyo Bridge Kyoto",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 13,
+      "key": "tenryuji",
+      "name": "天龙寺",
+      "lat": 35.0159,
+      "lng": 135.6737,
+      "address": "Tenryuji Kyoto",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 14,
+      "key": "bamboo",
+      "name": "岚山竹林",
+      "lat": 35.0175,
+      "lng": 135.6713,
+      "address": "Arashiyama Bamboo Grove",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 15,
+      "key": "jojakko",
+      "name": "常寂光寺",
+      "lat": 35.0208,
+      "lng": 135.6668,
+      "address": "Jojakkoji Kyoto",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 16,
+      "key": "demachi",
+      "name": "出町柳站",
+      "lat": 35.0307,
+      "lng": 135.7732,
+      "address": "Demachiyanagi Station",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 17,
+      "key": "kibune",
+      "name": "贵船口站",
+      "lat": 35.1058,
+      "lng": 135.7634,
+      "address": "Kibuneguchi Station",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 18,
+      "key": "kifune",
+      "name": "贵船神社",
+      "lat": 35.1216,
+      "lng": 135.7631,
+      "address": "Kifune Shrine Kyoto",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 19,
+      "key": "eikando",
+      "name": "永观堂",
+      "lat": 35.0142,
+      "lng": 135.7945,
+      "address": "Eikando Zenrinji Kyoto",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 20,
+      "key": "tofukuji",
+      "name": "东福寺",
+      "lat": 34.9765,
+      "lng": 135.7744,
+      "address": "Tofukuji Temple Kyoto",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 21,
+      "key": "gyoen",
+      "name": "京都御苑",
+      "lat": 35.0224,
+      "lng": 135.7621,
+      "address": "Kyoto Gyoen National Garden",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 22,
+      "key": "kinkakuji",
+      "name": "金阁寺",
+      "lat": 35.0394,
+      "lng": 135.7292,
+      "address": "Kinkakuji Kyoto",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 23,
+      "key": "kiyomizu",
+      "name": "清水寺",
+      "lat": 34.9949,
+      "lng": 135.785,
+      "address": "Kiyomizudera Kyoto",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 24,
+      "key": "rinku",
+      "name": "临空城站",
+      "lat": 34.4109,
+      "lng": 135.2994,
+      "address": "Rinku Town Station",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 25,
+      "key": "kyotoHotel",
+      "name": "金门京都酒店 · Hotel Gimmond Kyoto",
+      "lat": 35.0105044,
+      "lng": 135.7622519,
+      "address": "Hotel Gimmond Kyoto 595 Kikkoyacho Nakagyo Kyoto",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    },
+    {
+      "id": 26,
+      "key": "ujiHotel",
+      "name": "Hotel Trend JR Uji Ekimae",
+      "lat": 34.8887637,
+      "lng": 135.8008653,
+      "address": "ホテルトレンドJR宇治駅前 京都府宇治市宇治壱番19番2",
+      "description": "",
+      "category_id": null,
+      "notes": null
+    }
+  ],
+  "assignments": {
+    "1": [
+      {
+        "id": 1,
+        "day_id": 1,
+        "place_id": 1,
+        "order_index": 0,
+        "notes": "13:20｜抵达关西机场 T1［已明确］\n日本当地时间。留出入境、提取行李和海关时间。",
+        "place": {
+          "id": 1,
+          "key": "kix",
+          "name": "关西国际机场 T1",
+          "lat": 34.4358,
+          "lng": 135.2438,
+          "address": "Kansai International Airport Terminal 1",
+          "description": "",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      },
+      {
+        "id": 2,
+        "day_id": 1,
+        "place_id": 2,
+        "order_index": 1,
+        "notes": "14:30后｜前往奈良［候选／建议］\n巴士参考14:45→16:25、15:45→17:25，成人¥2,400。铁路备选：关西机场→天王寺→JR奈良。最终按出关时间决定。",
+        "place": {
+          "id": 2,
+          "key": "naraStation",
+          "name": "JR 奈良站",
+          "lat": 34.6805,
+          "lng": 135.8189,
+          "address": "JR Nara Station",
+          "description": "",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      },
+      {
+        "id": 3,
+        "day_id": 1,
+        "place_id": 3,
+        "order_index": 2,
+        "notes": "16:30–17:30｜入住 LOCO Minamiichi［已明确］\n住宿选择已提供，到店时间为估计。安排晚餐，先休息一下。",
+        "place": {
+          "id": 3,
+          "key": "hotel",
+          "name": "LOCO Minamiichi",
+          "lat": 34.6796,
+          "lng": 135.8302,
+          "address": "LOCO Minamiichi 10-4 Minamiichicho Nara",
+          "description": "地址附近示意，出发前核对具体入口。",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      },
+      {
+        "id": 4,
+        "day_id": 1,
+        "place_id": 4,
+        "order_index": 3,
+        "notes": "傍晚｜猿泽池 · 浮见堂散步［候选／建议］\n从住宿附近出发，按体力与天色调整；到得晚可只逛猿泽池。浮见堂是否点灯需确认。",
+        "place": {
+          "id": 4,
+          "key": "pond",
+          "name": "猿泽池",
+          "lat": 34.6807,
+          "lng": 135.8318,
+          "address": "Sarusawa Pond Nara",
+          "description": "",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      }
+    ],
+    "2": [
+      {
+        "id": 5,
+        "day_id": 2,
+        "place_id": 3,
+        "order_index": 0,
+        "notes": "08:00｜退房、安排寄存后出发［候选／建议］\n先向LOCO Minamiichi确认退房后能否寄存。若改用JR奈良站寄物柜，需要另加绕行时间。",
+        "place": {
+          "id": 3,
+          "key": "hotel",
+          "name": "LOCO Minamiichi",
+          "lat": 34.6796,
+          "lng": 135.8302,
+          "address": "LOCO Minamiichi 10-4 Minamiichicho Nara",
+          "description": "地址附近示意，出发前核对具体入口。",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      },
+      {
+        "id": 6,
+        "day_id": 2,
+        "place_id": 7,
+        "order_index": 1,
+        "notes": "08:30–09:30｜东大寺大佛殿［候选／建议］\n先看大佛殿与南大门。冬季08:00–17:00；成人单馆¥800，现场现金支付。",
+        "place": {
+          "id": 7,
+          "key": "todaiji",
+          "name": "东大寺大佛殿",
+          "lat": 34.689,
+          "lng": 135.8398,
+          "address": "Todaiji Daibutsuden Nara",
+          "description": "",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      },
+      {
+        "id": 7,
+        "day_id": 2,
+        "place_id": 8,
+        "order_index": 2,
+        "notes": "09:40–10:10｜二月堂［候选／建议］\n木质回廊、石阶和奈良城市远景。拍照与休息预留半小时。",
+        "place": {
+          "id": 8,
+          "key": "nigatsudo",
+          "name": "二月堂",
+          "lat": 34.6895,
+          "lng": 135.8446,
+          "address": "Todaiji Nigatsudo",
+          "description": "",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      },
+      {
+        "id": 8,
+        "day_id": 2,
+        "place_id": 9,
+        "order_index": 3,
+        "notes": "10:25–11:50｜若草山 · 一重目［候选／建议］\n以一重目为目标，午前下山。常规开放09:00–17:00，成人¥150；出入口位置与步行线路以现场为准。",
+        "place": {
+          "id": 9,
+          "key": "wakakusa",
+          "name": "若草山北入口",
+          "lat": 34.6868,
+          "lng": 135.8482,
+          "address": "Mount Wakakusa North Gate Nara",
+          "description": "地址附近示意，出发前核对具体入口。",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      },
+      {
+        "id": 9,
+        "day_id": 2,
+        "place_id": 2,
+        "order_index": 4,
+        "notes": "12:30–13:30｜午饭、取行李，前往宇治［候选／建议］\n回住宿取行李，再到JR奈良站搭奈良线往宇治。出发时间按上午游览节奏调整。",
+        "place": {
+          "id": 2,
+          "key": "naraStation",
+          "name": "JR 奈良站",
+          "lat": 34.6805,
+          "lng": 135.8189,
+          "address": "JR Nara Station",
+          "description": "",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      },
+      {
+        "id": 10,
+        "day_id": 2,
+        "place_id": 26,
+        "order_index": 5,
+        "notes": "抵达宇治后｜到 Hotel Trend JR Uji Ekimae 放行李［已明确］\n从JR宇治站南口步行约3分钟到店。15:00前到达可先寄存行李，再按你的宇治路线游览；房间常规15:00起入住。前台电话：+81-774-20-3200。",
+        "place": {
+          "id": 26,
+          "key": "ujiHotel",
+          "name": "Hotel Trend JR Uji Ekimae",
+          "lat": 34.8887637,
+          "lng": 135.8008653,
+          "address": "ホテルトレンドJR宇治駅前 京都府宇治市宇治壱番19番2",
+          "description": "",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      },
+      {
+        "id": 11,
+        "day_id": 2,
+        "place_id": 10,
+        "order_index": 6,
+        "notes": "午后起｜宇治 · 按你的安排慢慢走［已明确］\n当晚住Hotel Trend JR Uji Ekimae。游览顺序由你安排，待你提供后再补地点和费用。若改变到店时间且超过午夜，请提前联系酒店；前台02:00–05:00关闭。",
+        "place": {
+          "id": 10,
+          "key": "uji",
+          "name": "JR 宇治站",
+          "lat": 34.8896,
+          "lng": 135.8008,
+          "address": "JR Uji Station Kyoto",
+          "description": "",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      }
+    ],
+    "3": [
+      {
+        "id": 12,
+        "day_id": 3,
+        "place_id": 26,
+        "order_index": 0,
+        "notes": "10:00前｜宇治酒店退房、寄存行李［已明确］\n按订单办理退房，若继续游览宇治可先向前台寄存，离开宇治前取齐。常规10:00退房，以订单为准。",
+        "place": {
+          "id": 26,
+          "key": "ujiHotel",
+          "name": "Hotel Trend JR Uji Ekimae",
+          "lat": 34.8887637,
+          "lng": 135.8008653,
+          "address": "ホテルトレンドJR宇治駅前 京都府宇治市宇治壱番19番2",
+          "description": "",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      },
+      {
+        "id": 13,
+        "day_id": 3,
+        "place_id": 10,
+        "order_index": 1,
+        "notes": "至少到中午｜继续留在宇治［已明确］\n30日在宇治至少停留到中午；午饭和游览路线由你安排，不另加未确认的景点。",
+        "place": {
+          "id": 10,
+          "key": "uji",
+          "name": "JR 宇治站",
+          "lat": 34.8896,
+          "lng": 135.8008,
+          "address": "JR Uji Station Kyoto",
+          "description": "",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      },
+      {
+        "id": 14,
+        "day_id": 3,
+        "place_id": 25,
+        "order_index": 2,
+        "notes": "午后｜宇治 → 金门京都酒店［已明确］\n取行李后经京都站、乌丸御池到Hotel Gimmond Kyoto。14:00起入住；提前到达可寄存。具体出发时间未锁定。",
+        "place": {
+          "id": 25,
+          "key": "kyotoHotel",
+          "name": "金门京都酒店 · Hotel Gimmond Kyoto",
+          "lat": 35.0105044,
+          "lng": 135.7622519,
+          "address": "Hotel Gimmond Kyoto 595 Kikkoyacho Nakagyo Kyoto",
+          "description": "",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      },
+      {
+        "id": 15,
+        "day_id": 3,
+        "place_id": 19,
+        "order_index": 3,
+        "notes": "17:30后｜永观堂夜间参观［候选／建议］\n与高台寺等夜游择一；并非已购票。此前核验2026年11月20日—12月6日夜间开放，现场购买当日票；出发前再查公告。",
+        "place": {
+          "id": 19,
+          "key": "eikando",
+          "name": "永观堂",
+          "lat": 35.0142,
+          "lng": 135.7945,
+          "address": "Eikando Zenrinji Kyoto",
+          "description": "",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      }
+    ],
+    "4": [
+      {
+        "id": 16,
+        "day_id": 4,
+        "place_id": 25,
+        "order_index": 0,
+        "notes": "08:00左右｜京都酒店退房、寄存行李［已明确］\n离店时间为建议。Hotel Gimmond Kyoto官网确认退房后可寄存行李，游览结束后回前台取齐。",
+        "place": {
+          "id": 25,
+          "key": "kyotoHotel",
+          "name": "金门京都酒店 · Hotel Gimmond Kyoto",
+          "lat": 35.0105044,
+          "lng": 135.7622519,
+          "address": "Hotel Gimmond Kyoto 595 Kikkoyacho Nakagyo Kyoto",
+          "description": "",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      },
+      {
+        "id": 17,
+        "day_id": 4,
+        "place_id": 20,
+        "order_index": 1,
+        "notes": "09:00–10:15｜东福寺［候选／建议］\n若保留，仅安排这一个上午景点，以通天桥一带为主。10:15左右结束是赶车的规划留量，不是已核验列车时刻。",
+        "place": {
+          "id": 20,
+          "key": "tofukuji",
+          "name": "东福寺",
+          "lat": 34.9765,
+          "lng": 135.7744,
+          "address": "Tofukuji Temple Kyoto",
+          "description": "",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      },
+      {
+        "id": 18,
+        "day_id": 4,
+        "place_id": 15,
+        "order_index": 2,
+        "notes": "13:20–14:10｜常寂光寺［候选／建议］\n与天龙寺优先二选一；当前建议以常寂光寺红叶为主。此时间为步行与停留估计，现场按体力和叶况调整。",
+        "place": {
+          "id": 15,
+          "key": "jojakko",
+          "name": "常寂光寺",
+          "lat": 35.0208,
+          "lng": 135.6668,
+          "address": "Jojakkoji Kyoto",
+          "description": "",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      },
+      {
+        "id": 19,
+        "day_id": 4,
+        "place_id": 14,
+        "order_index": 3,
+        "notes": "14:25–14:45｜竹林小径［候选／建议］\n趁白天游览。11月30日及12月1日不按竹林夜间点灯活动安排行程。",
+        "place": {
+          "id": 14,
+          "key": "bamboo",
+          "name": "岚山竹林",
+          "lat": 35.0175,
+          "lng": 135.6713,
+          "address": "Arashiyama Bamboo Grove",
+          "description": "",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      },
+      {
+        "id": 20,
+        "day_id": 4,
+        "place_id": 12,
+        "order_index": 4,
+        "notes": "15:00–15:30｜渡月桥、桂川边［候选／建议］\n留意回程时间；天龙寺保留为替换项，不将两座庭园都设为必须完成。",
+        "place": {
+          "id": 12,
+          "key": "togetsu",
+          "name": "渡月桥",
+          "lat": 35.0135,
+          "lng": 135.6779,
+          "address": "Togetsukyo Bridge Kyoto",
+          "description": "",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      },
+      {
+        "id": 21,
+        "day_id": 4,
+        "place_id": 25,
+        "order_index": 5,
+        "notes": "15:30左右起｜返回金门京都酒店取行李［候选／建议］\n先结束岚山游览，回酒店前台取行李，再前往京都站。",
+        "place": {
+          "id": 25,
+          "key": "kyotoHotel",
+          "name": "金门京都酒店 · Hotel Gimmond Kyoto",
+          "lat": 35.0105044,
+          "lng": 135.7622519,
+          "address": "Hotel Gimmond Kyoto 595 Kikkoyacho Nakagyo Kyoto",
+          "description": "",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      },
+      {
+        "id": 22,
+        "day_id": 4,
+        "place_id": 24,
+        "order_index": 6,
+        "notes": "17:00前后｜京都 → 临空城［已明确］\n17:00是建议离开京都的目标，具体车次、票价及到临空城酒店的路线待落实；晚上入住，为2日09:20航班做准备。",
+        "place": {
+          "id": 24,
+          "key": "rinku",
+          "name": "临空城站",
+          "lat": 34.4109,
+          "lng": 135.2994,
+          "address": "Rinku Town Station",
+          "description": "",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      }
+    ],
+    "5": [
+      {
+        "id": 23,
+        "day_id": 5,
+        "place_id": 1,
+        "order_index": 0,
+        "notes": "06:20左右｜抵达关西机场 T1［候选／建议］\n根据酒店位置倒推退房时间。由临空城站搭列车或使用酒店接驳，最终以查到的时刻为准。",
+        "place": {
+          "id": 1,
+          "key": "kix",
+          "name": "关西国际机场 T1",
+          "lat": 34.4358,
+          "lng": 135.2438,
+          "address": "Kansai International Airport Terminal 1",
+          "description": "",
+          "category_id": null,
+          "notes": null,
+          "place_time": null,
+          "end_time": null
+        }
+      }
+    ]
+  },
+  "accommodations": [
+    {
+      "id": 1,
+      "place_name": "LOCO Minamiichi",
+      "start_day_id": 1,
+      "end_day_id": 2
+    },
+    {
+      "id": 2,
+      "place_name": "Hotel Trend JR Uji Ekimae",
+      "start_day_id": 2,
+      "end_day_id": 3
+    },
+    {
+      "id": 3,
+      "place_name": "金门京都酒店 · Hotel Gimmond Kyoto",
+      "start_day_id": 3,
+      "end_day_id": 4
+    }
+  ],
+  "reservations": [
+    {
+      "id": 1,
+      "trip_id": 1,
+      "title": "MU5542｜福州长乐 T1 → 上海浦东 T1",
+      "type": "flight",
+      "status": "confirmed",
+      "day_id": 1,
+      "reservation_time": "07:25",
+      "reservation_end_time": "08:55",
+      "location": "福州长乐 T1 → 上海浦东 T1",
+      "notes": "均为北京时间。来自用户机票截图，未查询实时航变。联程、行李直达已由用户确认；付款金额和订单号未提供。",
+      "metadata": {
+        "airline": "中国东方航空",
+        "flight_number": "MU5542",
+        "from": "FOC",
+        "to": "PVG"
+      },
+      "endpoints": [
+        {
+          "name": "福州长乐T1",
+          "lat": 25.9351,
+          "lng": 119.6633,
+          "timezone": "Asia/Shanghai",
+          "role": "from",
+          "code": "FOC",
+          "sequence": 0,
+          "local_date": "2026-11-28",
+          "local_time": "07:25"
+        },
+        {
+          "name": "上海浦东T1",
+          "lat": 31.1443,
+          "lng": 121.8083,
+          "timezone": "Asia/Shanghai",
+          "role": "to",
+          "code": "PVG",
+          "sequence": 1,
+          "local_date": "2026-11-28",
+          "local_time": "08:55"
+        }
+      ],
+      "day_plan_position": -2
+    },
+    {
+      "id": 2,
+      "trip_id": 1,
+      "title": "MU515｜上海浦东 T1 → 大阪关西 T1",
+      "type": "flight",
+      "status": "confirmed",
+      "day_id": 1,
+      "reservation_time": "10:05",
+      "reservation_end_time": "13:20",
+      "location": "上海浦东 T1 → 大阪关西 T1",
+      "notes": "出发北京时间 · 到达日本时间。来自用户机票截图，未查询实时航变。联程、行李直达已由用户确认；付款金额和订单号未提供。",
+      "metadata": {
+        "airline": "中国东方航空",
+        "flight_number": "MU515",
+        "from": "PVG",
+        "to": "KIX"
+      },
+      "endpoints": [
+        {
+          "name": "上海浦东T1",
+          "lat": 31.1443,
+          "lng": 121.8083,
+          "timezone": "Asia/Shanghai",
+          "role": "from",
+          "code": "PVG",
+          "sequence": 0,
+          "local_date": "2026-11-28",
+          "local_time": "10:05"
+        },
+        {
+          "name": "关西国际机场T1",
+          "lat": 34.4358,
+          "lng": 135.2438,
+          "timezone": "Asia/Tokyo",
+          "role": "to",
+          "code": "KIX",
+          "sequence": 1,
+          "local_date": "2026-11-28",
+          "local_time": "13:20"
+        }
+      ],
+      "day_plan_position": -1
+    },
+    {
+      "id": 3,
+      "trip_id": 1,
+      "title": "MU730｜大阪关西 T1 → 上海浦东 T1",
+      "type": "flight",
+      "status": "confirmed",
+      "day_id": 5,
+      "reservation_time": "09:20",
+      "reservation_end_time": "11:00",
+      "location": "大阪关西 T1 → 上海浦东 T1",
+      "notes": "出发日本时间 · 到达北京时间。来自用户机票截图，未查询实时航变。联程、行李直达已由用户确认；付款金额和订单号未提供。",
+      "metadata": {
+        "airline": "中国东方航空",
+        "flight_number": "MU730",
+        "from": "KIX",
+        "to": "PVG"
+      },
+      "endpoints": [
+        {
+          "name": "关西国际机场T1",
+          "lat": 34.4358,
+          "lng": 135.2438,
+          "timezone": "Asia/Tokyo",
+          "role": "from",
+          "code": "KIX",
+          "sequence": 0,
+          "local_date": "2026-12-02",
+          "local_time": "09:20"
+        },
+        {
+          "name": "上海浦东T1",
+          "lat": 31.1443,
+          "lng": 121.8083,
+          "timezone": "Asia/Shanghai",
+          "role": "to",
+          "code": "PVG",
+          "sequence": 1,
+          "local_date": "2026-12-02",
+          "local_time": "11:00"
+        }
+      ],
+      "day_plan_position": 0.5
+    },
+    {
+      "id": 4,
+      "trip_id": 1,
+      "title": "MU5599｜上海浦东 T1 → 福州长乐 T1",
+      "type": "flight",
+      "status": "confirmed",
+      "day_id": 5,
+      "reservation_time": "15:55",
+      "reservation_end_time": "17:45",
+      "location": "上海浦东 T1 → 福州长乐 T1",
+      "notes": "均为北京时间 · 截图已变更。来自用户机票截图，未查询实时航变。联程、行李直达已由用户确认；付款金额和订单号未提供。",
+      "metadata": {
+        "airline": "中国东方航空",
+        "flight_number": "MU5599",
+        "from": "PVG",
+        "to": "FOC"
+      },
+      "endpoints": [
+        {
+          "name": "上海浦东T1",
+          "lat": 31.1443,
+          "lng": 121.8083,
+          "timezone": "Asia/Shanghai",
+          "role": "from",
+          "code": "PVG",
+          "sequence": 0,
+          "local_date": "2026-12-02",
+          "local_time": "15:55"
+        },
+        {
+          "name": "福州长乐T1",
+          "lat": 25.9351,
+          "lng": 119.6633,
+          "timezone": "Asia/Shanghai",
+          "role": "to",
+          "code": "FOC",
+          "sequence": 1,
+          "local_date": "2026-12-02",
+          "local_time": "17:45"
+        }
+      ],
+      "day_plan_position": 0.6
+    },
+    {
+      "id": 5,
+      "trip_id": 1,
+      "title": "嵯峨野8号｜龟冈 → 嵯峨",
+      "type": "train",
+      "status": "confirmed",
+      "day_id": 4,
+      "reservation_time": "12:30",
+      "reservation_end_time": "12:56",
+      "location": "小火车龟冈 → 小火车嵯峨",
+      "notes": "2026-12-01，4号车厢16A，普通车厢。用户提供票面，当前拟使用。金额及订单号未提供。目标12:00到站，JR马堀下车后步行约10分钟。",
+      "url": "https://www.sagano-kanko.co.jp/",
+      "metadata": {
+        "train_number": "嵯峨野8号",
+        "seat": "4号车厢16A",
+        "from": "小火车龟冈",
+        "to": "小火车嵯峨",
+        "timezone": "Asia/Tokyo"
+      },
+      "day_plan_position": 1.5
+    },
+    {
+      "id": 6,
+      "trip_id": 1,
+      "title": "LOCO Minamiichi",
+      "type": "hotel",
+      "status": "pending",
+      "day_id": 1,
+      "reservation_time": "2026-11-28",
+      "location": "LOCO Minamiichi 10-4 Minamiichicho Nara",
+      "notes": "已选择住宿，未核验预订凭证。\n入住2026-11-28，退房2026-11-29。金额和确认号未提供。",
+      "metadata": {
+        "check_in_time": null,
+        "check_out_time": null
+      },
+      "day_plan_position": null
+    },
+    {
+      "id": 7,
+      "trip_id": 1,
+      "title": "Hotel Trend JR Uji Ekimae",
+      "type": "hotel",
+      "status": "confirmed",
+      "day_id": 2,
+      "reservation_time": "2026-11-29",
+      "location": "ホテルトレンドJR宇治駅前 京都府宇治市宇治壱番19番2",
+      "notes": "用户已确认住宿安排。\n入住2026-11-29，退房2026-11-30。金额和确认号未提供。",
+      "metadata": {
+        "check_in_time": "15:00",
+        "check_out_time": "10:00"
+      },
+      "day_plan_position": null
+    },
+    {
+      "id": 8,
+      "trip_id": 1,
+      "title": "金门京都酒店 · Hotel Gimmond Kyoto",
+      "type": "hotel",
+      "status": "confirmed",
+      "day_id": 3,
+      "reservation_time": "2026-11-30",
+      "location": "Hotel Gimmond Kyoto 595 Kikkoyacho Nakagyo Kyoto",
+      "notes": "用户已确认住宿安排。\n入住2026-11-30，退房2026-12-01。金额和确认号未提供。入住前和退房后可寄存行李。",
+      "metadata": {
+        "check_in_time": "14:00",
+        "check_out_time": "11:00"
+      },
+      "day_plan_position": null
+    }
+  ],
+  "dayNotes": {},
+  "categories": []
+}

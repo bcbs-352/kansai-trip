@@ -1,0 +1,21 @@
+html, body { height: auto; min-height: 100%; overflow: visible; }
+body { overflow-x: clip; }
+textarea { resize: vertical; }
+input[type="checkbox"] { accent-color: var(--accent); width: 18px; height: 18px; flex-shrink: 0; }
+button, a, input, textarea { touch-action: manipulation; }
+.print-trip { display: none; }
+.static-tabs .hidden { display: inline; }
+@media (max-width: 639px) {
+  .static-tabs button { padding: 6px !important; gap: 3px !important; font-size: calc(12px * var(--fs-scale-caption, 1)) !important; }
+  .static-tabs button svg { width: 13px; height: 13px; }
+}
+@media print {
+  header, footer, button, input[type="file"], .leaflet-container { display: none !important; }
+  html, body { overflow: visible; }
+  section, article { break-inside: avoid; }
+  .screen-trip { display: none; }
+  .print-trip { display: block; padding: 12mm; color: black; background: white; font-size: 11pt; line-height: 1.6; }
+  .print-trip h1 { font-size: 22pt; font-weight: bold; }
+  .print-trip h2 { font-size: 16pt; font-weight: bold; margin-top: 20pt; }
+  .print-trip p, .print-trip li { margin-top: 7pt; white-space: pre-wrap; }
+}

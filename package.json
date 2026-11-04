@@ -1,9 +1,0 @@
-{
-  "name": "kansai-trip-pages",
-  "version": "1.4.0",
-  "private": true,
-  "scripts": {
-    "check": "node scripts/check.mjs",
-    "preview": "node scripts/preview.mjs"
-  }
-}

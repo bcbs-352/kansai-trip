@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0-pages",
+  "version": "2.0.0-trek-static",
   "updated": "2026-11-04",
   "title": "关西旅行计划",
   "dates": "2026.11.28 — 12.02",
@@ -1274,7 +1274,7 @@
   "changes": [
     {
       "date": "2026.11.04",
-      "text": "生成GitHub Pages静态版：保留最新行程、地图导航、费用试算和本机备忘；不上传TREK数据库、账号或私有笔记。"
+      "text": "发布TREK原生只读展示组件静态版：日程地图、航班住宿、路线应急、费用参考及本机备忘。"
     },
     {
       "date": "2026.11.04",
@@ -1305,6 +1305,7 @@
     "kind": "static",
     "source": "confirmed-project-plan",
     "databaseSync": false,
-    "personalNotesIncluded": false
+    "personalNotesIncluded": false,
+    "ui": "TREK 5.1.0 native shared-trip components"
   }
 }
