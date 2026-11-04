@@ -4,6 +4,7 @@ import type { Day, Reservation } from '../types'
 import type { SharedPlanView } from '../pages/sharedTrip/SharedPlanView'
 import snapshot from './snapshot.json'
 import plan from './trip.json'
+import { nextPlaceFocus, type FocusedPlace, type PlaceTarget } from './placeFocus'
 
 export const trip = plan
 export const data = snapshot as unknown as Omit<ComponentProps<typeof SharedPlanView>['data'], 'days' | 'reservations'> & {
@@ -42,6 +43,7 @@ export function validateLocal(input: unknown): LocalState {
 export function useStaticTrip() {
   const [tab, setTab] = useState('plan')
   const [selectedDay, setSelectedDay] = useState<number | null>(null)
+  const [focusedPlace, setFocusedPlace] = useState<FocusedPlace | null>(null)
   const [collapsed, setCollapsed] = useState<ReadonlySet<number>>(() => new Set())
   const [message, setMessage] = useState('')
   const [local, setLocal] = useState<LocalState>(() => {
@@ -57,6 +59,16 @@ export function useStaticTrip() {
     if (next.has(id)) next.delete(id); else next.add(id)
     return next
   })
+  const selectDay = (id: number | null) => {
+    setSelectedDay(id)
+    setFocusedPlace(null)
+  }
+  const focusPlace = (dayId: number | null, place: PlaceTarget) => {
+    if (!nextPlaceFocus(null, place)) return
+    setSelectedDay(dayId)
+    setFocusedPlace(previous => nextPlaceFocus(previous, place))
+  }
+  const clearPlaceFocus = () => setFocusedPlace(null)
   const note = (id: string, text: string) => setLocal(previous => ({ ...previous, notes: { ...previous.notes, [id]: text } }))
   const check = (field: 'tasks' | 'costs', id: string, value: boolean) => setLocal(previous => ({ ...previous, [field]: { ...previous[field], [id]: value } }))
   const download = (filename: string, text: string, type: string) => {
@@ -104,7 +116,7 @@ export function useStaticTrip() {
     lines.push('## 总备忘', local.notes.general || '')
     download('关西旅行计划.md', lines.join('\n\n'), 'text/markdown;charset=utf-8')
   }
-  return { tab, setTab, selectedDay, setSelectedDay, collapsed, toggleDay, local, note, check, message, exportBackup, importBackup, exportTrip }
+  return { tab, setTab, selectedDay, setSelectedDay: selectDay, focusedPlace, focusPlace, clearPlaceFocus, collapsed, toggleDay, local, note, check, message, exportBackup, importBackup, exportTrip }
 }
 
 export function navigation(from: string, to: string, mode: string) {

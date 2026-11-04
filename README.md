@@ -7,6 +7,7 @@
 - 2026-11-28 至 12-02；11月30日在宇治至少到中午；12月1日使用嵯峨野8号12:30–12:56，4号车16A。
 - 候选景点与建议时间不代表预订；临空城酒店仍待确认。
 - 地图虚线仅表示游览顺序。实际道路、公交与铁路换乘通过 Google Maps 链接查看，需要网络。
+- 点击地点图标或标题，会切换到对应日期并在地图中放大定位、高亮标记和名称；手机上会滚动到地图。点击“返回整日视图”恢复当日范围；切换日期会清除上个地点的高亮。
 - 费用保留原核验日期，属于参考和试算。未提供的机票、火车票和住宿金额未被编造。
 - 个人备忘和勾选只保存在当前浏览器，不提供账号登录或跨设备自动同步。换设备前在“备忘与待办”导出JSON，在另一设备导入。也可导出包含路线链接的完整Markdown行程。
 - 正式行程由维护者修改数据、构建后重新发布。当前不连接本地TREK数据库；本地TREK中的编辑不会自动出现在这个网站。
@@ -15,7 +16,7 @@
 
 ## 源代码与许可
 
-本页面实际复用了TREK的原生组件，包括SharedHero、SharedTabBar、SharedPlanView、SharedMap、SharedDayCard、SharedBookingsView、主题及翻译机制。并非完整服务端应用。未修改其身份验证机制，也不模拟登录。
+本页面复用TREK的SharedHero、SharedTabBar、SharedBookingsView、主题及翻译机制。日程和地图相关组件由固定版本的SharedPlanView、SharedMap、SharedDayCard、SharedUnplannedCard适配而来，对应源码为source/src/Linked*.tsx；新增点击地点定位和高亮。原TREK源码保持不变。此页面并非完整服务端应用，未修改其身份验证机制，也不模拟登录。
 
 TREK固定源代码：
 
@@ -26,7 +27,7 @@ TREK固定源代码：
 
 静态入口、新增交互、构建配置及发布快照的完整源文件位于source/。新增适配代码同样按AGPL-3.0提供。构建使用固定提交中的依赖锁文件，不需要任何服务端账号、数据库或私密环境变量。
 
-静态构建将原分享页的矢量底图模块替换为OpenStreetMap栅格底图，以减少WebGL依赖；TREK原生地图标记、日程选取、游览顺序虚线和卡片组件保持复用。源码在source/src/StaticBasemap.tsx，构建别名在source/vite.pages.config.js。
+静态构建使用OpenStreetMap栅格底图，以减少WebGL依赖；TREK地图标记、日程选取、游览顺序虚线和卡片结构保持沿用。底图源码在source/src/StaticBasemap.tsx。
 
 ## 复现构建
 

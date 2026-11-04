@@ -1,6 +1,6 @@
 import { Map, Route, Ticket, Wallet, NotebookPen } from 'lucide-react'
 import { SharedHero, SharedTabBar, PAGE_WIDTH } from '../pages/sharedTrip/SharedChrome'
-import { SharedPlanView } from '../pages/sharedTrip/SharedPlanView'
+import { LinkedPlanView } from './LinkedPlanView'
 import { SharedBookingsView } from '../pages/sharedTrip/SharedBookingsView'
 import { data, trip, useStaticTrip } from './useStaticTrip'
 import { PracticalPanels } from './PracticalPanels'
@@ -28,11 +28,11 @@ export default function StaticTripPage() {
         <SharedHero trip={data.trip} stats={[{ key: 'days', value: 5, label: '天' }, { key: 'places', value: Object.keys(trip.places).length, label: '地点与候选' }, { key: 'bookings', value: data.reservations.length, label: '交通与住宿记录' }]} />
         <div className="mt-4 rounded-2xl border border-edge-faint bg-surface-card p-4 text-caption leading-relaxed text-content-secondary">
           <strong className="text-content">11/30 宇治至少到中午 · 12/1 岚山小火车 12:30–12:56 · 12/2 关西机场 09:20 起飞</strong>
-          <p className="mt-1">正式行程由项目更新发布；个人备忘与勾选仅保存在当前浏览器。地图虚线表示游览顺序，实际道路与接驳请打开 Google Maps。</p>
+          <p className="mt-1">点击地点图标或名称可在地图中定位。地图虚线表示游览顺序，实际道路与接驳请打开 Google Maps。个人备忘与勾选仅保存在当前浏览器。</p>
         </div>
         <div className="static-tabs"><SharedTabBar tabs={tabs} active={state.tab} onChange={state.setTab} /></div>
         <div className="pb-6">
-          {state.tab === 'plan' && <SharedPlanView data={data} selectedDay={state.selectedDay} onSelectDay={state.setSelectedDay} onPickDayOnMap={state.setSelectedDay} collapsedDays={state.collapsed} onToggleDay={state.toggleDay} />}
+          {state.tab === 'plan' && <LinkedPlanView data={data} selectedDay={state.selectedDay} onSelectDay={state.setSelectedDay} onPickDayOnMap={state.setSelectedDay} collapsedDays={state.collapsed} onToggleDay={state.toggleDay} focusedPlace={state.focusedPlace} onLocatePlace={state.focusPlace} onClearFocus={state.clearPlaceFocus} />}
           {state.tab === 'bookings' && <SharedBookingsView reservations={data.reservations} days={data.days} tripCurrency="JPY" />}
           {['routes', 'costs', 'notes'].includes(state.tab) && <PracticalPanels state={state} />}
         </div>
