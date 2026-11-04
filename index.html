@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#24483c">
+  <meta name="description" content="关西个人旅行工作台：每日安排、地图导航、费用参考、备忘、待办和临时状况处理。">
+  <title>关西旅行计划 · 2026</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="./vendor/leaflet.css">
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./vendor/leaflet.js"></script>
+  <script defer src="./backup.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳转到行程内容</a>
+  <aside class="sidebar">
+    <a class="wordmark" href="#itinerary"><span class="wordmark-box">旅</span><span>关西旅行计划<small>PERSONAL TRIP PLANNER</small></span></a>
+    <div class="edition mono">NOV — DEC / 2026 <span>静态版 v1.4</span></div>
+    <nav class="main-nav" aria-label="页面导航">
+      <a href="#itinerary" class="active" data-nav="itinerary"><span>01</span>每日行程<svg><use href="#i-route"/></svg></a>
+      <a href="#routes" data-nav="routes"><span>02</span>路线地图<svg><use href="#i-map"/></svg></a>
+      <a href="#budget" data-nav="budget"><span>03</span>费用手账<svg><use href="#i-wallet"/></svg></a>
+      <a href="#checklist" data-nav="checklist"><span>04</span>行前待办<svg><use href="#i-check"/></svg></a>
+      <a href="#flights" data-nav="flights"><span>05</span>航班与住宿<svg><use href="#i-plane"/></svg></a>
+      <a href="#contingencies" data-nav="contingencies"><span>06</span>临时状况处理<svg><use href="#i-route"/></svg></a>
+      <a href="#notes" data-nav="notes"><span>07</span>我的备忘<svg><use href="#i-check"/></svg></a>
+    </nav>
+    <div class="rail-heading mono">FIVE DAYS, FOUR NIGHTS</div>
+    <div class="rail-days" id="rail-days"></div>
+    <div class="sidebar-bottom"><span class="rail-heading">时间说明</span><p>日本境内：日本时间<br>中国航段：北京时间</p><span class="mono">JST = CST + 1H</span></div>
+  </aside>
+  <main id="main">
+    <header class="topbar"><span class="breadcrumb">我的旅行 <span>/</span> 关西 · 深秋</span><div class="top-actions"><span class="updated" id="updated">静态行程 · 11.04 更新</span><button class="icon-button" id="print-button" aria-label="打印行程"><svg><use href="#i-print"/></svg><span>打印</span></button><button class="text-button" id="export-button"><svg><use href="#i-download"/></svg>导出行程</button></div></header>
+    <section class="hero">
+      <div class="hero-copy"><p class="eyebrow mono">KANSAI / PERSONAL TRIP PLANNER</p><h1>关西旅行<span>工作台</span></h1><p class="hero-description">奈良 → 宇治 → 京都 → 临空城<br>行程、交通、费用与备选方案，集中查看。</p><div class="hero-facts"><span><svg><use href="#i-calendar"/></svg><b class="mono">11.28 — 12.02</b></span><span>5 天 4 晚</span><span>4 个住宿城市</span></div></div>
+      <div class="journey-art" aria-label="城市顺序示意：关西机场、奈良、宇治、京都、临空城">
+        <svg viewBox="0 0 400 200" role="img" aria-label="关西五日旅行示意图，不按实际地理比例">
+          <g fill="none" stroke="#d9dfd4" stroke-width=".8"><path d="M190-20C80 30 110 60 200 75S350 80 340 160 180 230 150 190 80 160 40 210"/><path d="M210-10C110 40 130 45 215 60S375 90 355 170 190 250 140 210 75 175 30 230"/><path d="M160-20C50 20 80 80 180 90S315 100 325 150 210 200 175 170 90 130 35 190"/><path d="M130-20C20 40 65 100 170 110S300 120 305 145 235 175 200 150 80 100 20 170"/><path d="M110-25C-10 40 40 120 160 130S265 125 270 145 210 140 190 135 70 90 10 150"/></g>
+          <path d="M43 143 Q98 170 153 128 T260 92 T310 43" fill="none" stroke="#24483c" stroke-width="2" stroke-dasharray="4 5"/><path d="M310 43Q390 173 75 183L43 143" fill="none" stroke="#b66a47" stroke-width="1.5" stroke-dasharray="3 6"/>
+          <g fill="#24483c" stroke="#fffefa" stroke-width="3"><circle cx="43" cy="143" r="6"/><circle cx="153" cy="128" r="7"/><circle cx="260" cy="92" r="6"/><circle cx="310" cy="43" r="7"/></g><circle cx="75" cy="183" r="5" fill="#b66a47"/>
+          <g fill="#24483c" font-size="13" font-family="sans-serif"><text x="15" y="122">关西机场</text><text x="139" y="109">奈良</text><text x="242" y="73">宇治</text><text x="292" y="23">京都</text><text x="91" y="188" fill="#9e6345">临空城</text></g>
+        </svg><span class="art-caption">城市顺序示意 · 非地理比例</span>
+      </div>
+    </section>
+    <p class="publication-note">静态行程页 · 正式安排由项目文件维护；本机备忘、勾选和费用试算不会自动同步到其他设备或TREK。</p>
+    <section id="itinerary" class="itinerary-section">
+      <div class="section-heading"><div><span class="section-no mono">01 / ITINERARY</span><h2>每日行程</h2></div><div class="legend"><span><i class="dot green"></i>已确认信息</span><span><i class="dot rust"></i>候选 / 待定</span></div></div>
+      <div id="day-tabs" class="day-tabs" role="tablist" aria-label="选择旅行日期"></div>
+      <div class="daily-layout">
+        <article id="day-panel" role="tabpanel" class="day-panel" aria-live="polite"></article>
+        <section class="map-card" id="routes" aria-label="路线地图">
+          <div class="map-heading"><div><span class="section-no mono">02 / ROUTES</span><h3>地点与分段导航</h3></div><button id="fit-map" class="icon-button" aria-label="显示整条路线"><svg><use href="#i-expand"/></svg></button></div>
+          <div id="route-tabs" class="route-tabs" aria-label="候选路线"></div>
+          <div class="map-wrap"><div id="map" aria-label="互动地点地图"></div><div id="map-fallback" hidden><p>底图暂时无法加载</p><span>地点清单与导航链接仍可使用。</span></div><span class="map-overlay-note">地点连线示意 · 非实际导航路线</span></div>
+          <div class="map-footer"><p id="route-description"></p><div class="map-route-list" id="route-list"></div><details class="route-details"><summary>分段导航 <span>在 Google Maps 打开 ↗</span></summary><div id="route-links"></div></details><p class="map-smallprint">标记为规划参考，入口可能与实际位置略有差异。导航链接按地点名称查询，路线以地图服务及现场指示为准。</p></div>
+        </section>
+      </div>
+    </section>
+    <section id="budget" class="budget-section">
+      <div class="section-heading"><div><span class="section-no mono">03 / COSTS</span><h2>费用参考与试算</h2></div><span class="section-note">成人参考价 · 日元 JPY</span></div>
+      <div class="budget-layout"><div class="budget-table-wrap"><p class="table-intro">勾选想比较的项目，算一笔局部预算。<span>这里的选择不会改变正式行程。</span></p><div id="cost-list"></div></div><aside class="budget-summary"><span class="mono summary-kicker">SELECTED ITEMS / PERSON</span><p>已选项目参考小计</p><div class="total-amount"><span>¥</span><strong id="cost-total">—</strong></div><p class="budget-caption">仅为已勾选项目，非旅行总预算，<br>也不代表已经支付或预订。</p><div class="travellers"><label for="people">按成人数试算</label><input type="number" id="people" min="1" max="20" value="1" inputmode="numeric"><span>人</span></div><div class="group-total">人数试算 <strong id="group-total">—</strong></div><h4>尚未计入</h4><ul id="unpriced"></ul></aside></div>
+    </section>
+    <section id="checklist">
+      <div class="section-heading"><div><span class="section-no mono">04 / CHECKLIST</span><h2>行前待办</h2></div><span id="task-progress" class="progress-label"></span></div>
+      <p class="local-note">勾选状态仅保存在这台设备的浏览器里。行程内容的正式删改，请在聊天中告诉我。</p>
+      <div id="task-list" class="task-grid"></div>
+    </section>
+    <section id="flights">
+      <div class="section-heading"><div><span class="section-no mono">05 / FLIGHTS & STAYS</span><h2>航班与住宿</h2></div><span class="confirmed-chip">联程 · 行李直达已确认</span></div>
+      <p class="local-note">航班来自你的机票截图，各机场当地时间；日本比中国快1小时。未接入实时航变。</p>
+      <div id="flight-list" class="flight-grid"></div>
+      <p class="baggage-note"><svg><use href="#i-bag"/></svg>截图行李额度：手提 1件 × 8kg · 托运 2件 × 23kg。实际以客票和航司规则为准。</p>
+      <div id="stay-list" class="stay-grid"></div>
+    </section>
+    <section id="contingencies"><div class="section-heading"><div><span class="section-no mono">06 / PLAN B</span><h2>临时状况与备选方案</h2></div><span class="section-note">按实际情况处理</span></div><p class="local-note">以下为行程应对建议，触发时间是规划参考；实际班次、开放和接驳请通过导航或官方链接确认。</p><div id="contingency-list" class="contingency-grid"></div></section>
+    <section id="notes"><div class="section-heading"><div><span class="section-no mono">07 / NOTES</span><h2>我的备忘</h2></div><span id="notes-status" class="save-status">仅存当前浏览器</span></div><label for="general-notes" class="notes-label">预订事项、要买的东西、临时想到的安排</label><textarea id="general-notes" rows="6" maxlength="12000" placeholder="在这里记录。自动保存在本机浏览器；换设备前请导出。不要填写护照号、支付资料等敏感信息。"></textarea><p class="local-note">这里的备忘不会自动传到聊天或其他设备。需要我维护到正式行程的内容，请发回这段聊天；也可导出后同步。</p><button id="import-backup" class="text-button">导入本机备忘</button><input id="backup-file" type="file" accept=".json,application/json" hidden> <button id="notes-export" class="text-button"><svg><use href="#i-download"/></svg>导出备忘与勾选记录</button></section>
+    <section class="maintenance">
+      <div><span class="section-no mono">MAINTENANCE</span><h2>后续更新</h2><p>提供酒店、调整景点或补充宇治路线时，<br>在原聊天提出，我会更新网页及行程数据。</p><button id="download-data" class="text-button"><svg><use href="#i-download"/></svg>备份当前行程数据</button></div><div class="changelog"><h3>更新记录</h3><div id="changes"></div></div>
+    </section>
+    <details class="sources"><summary>信息来源与使用说明</summary><p>行程基于你的机票截图、聊天与合并记录。门票信息标注查询日期；参考价格可能变动。正式路线由聊天维护，网页内预算和待办勾选只保存在当前浏览器。</p><div id="source-links"></div></details>
+    <footer><span>关西旅行计划 <span class="mono">/ 2026</span></span><span>正式行程由聊天维护 · 本机备忘可导出</span></footer>
+    <div id="toast" role="status" aria-live="polite" hidden></div>
+    <noscript><p class="error-note">请启用JavaScript查看互动行程，也可以直接<a href="./trip.json">下载行程数据</a>。</p></noscript>
+  </main>
+  <svg xmlns="http://www.w3.org/2000/svg" class="svg-sprite" aria-hidden="true">
+    <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M9 6h6a4 4 0 010 8H9a3 3 0 000 6h6"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="M3 5l6-2 6 3 6-2v15l-6 2-6-3-6 2zM9 3v15M15 6v15"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M20 8H4a2 2 0 010-4h14v4M4 8v12h17V8M21 12h-6v5h6"/><path d="M17 14.5h1"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 12l3 3 7-7"/></symbol>
+    <symbol id="i-plane" viewBox="0 0 24 24"><path d="M22 2L9 15M22 2l-7 20-4-9-9-4z"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 2v6M17 2v6M3 11h18M7 15h3M14 15h3"/></symbol>
+    <symbol id="i-print" viewBox="0 0 24 24"><path d="M7 8V3h10v5M7 17H3V9h18v8h-4M7 14h10v7H7zM17 11h1"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 16v5h16v-5"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24"><path d="M9 3H3v6M15 3h6v6M21 15v6h-6M3 15v6h6"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1114 0z"/><circle cx="12" cy="10" r="2"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><rect x="5" y="6" width="14" height="14" rx="2"/><path d="M9 6V3h6v3M8 20v2M16 20v2M9 10v6M15 10v6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M14 7l5 5-5 5"/></symbol>
+  </svg>
+</body>
+</html>
