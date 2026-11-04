@@ -18,7 +18,7 @@ import { renderIconMarkup } from '../utils/iconMarkup'
 import { computeMapViewport, TILE_SIZE_RASTER } from '../utils/mapViewport'
 import { safeHexColor } from '../utils/safeColor'
 import { resolveBasemap } from '../utils/tileUrl'
-import type { FocusedPlace } from './placeFocus'
+import { focusRouteContext, type FocusedPlace, type PlaceTarget } from './placeFocus'
 
 // Injected into Leaflet's marker HTML, where CSS variables cannot reach, the same
 // reason MapView.tsx is exempt from theme:lint outright.
@@ -26,6 +26,7 @@ const ORDER_BADGE_STYLE = 'position:absolute;bottom:-4px;right:-4px;min-width:16
 
 export interface MapPlace {
   id: number
+  stopId?: number
   name: string
   lat: number
   lng: number
@@ -102,13 +103,26 @@ interface LinkedMapProps {
   onClearFocus: () => void
 }
 
-function FocusPlaceCamera({ place }: { place: FocusedPlace | null }) {
+function FocusPlaceCamera({ place, context }: { place: FocusedPlace | null; context: PlaceTarget[] }) {
   const map = useMap()
+  const contextKey = context.map(p => `${p.lat},${p.lng}`).join('|')
   useEffect(() => {
     if (!place) return
-    const animate = !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
-    map.flyTo([place.lat, place.lng], Math.min(17, map.getMaxZoom()), { animate, duration: 0.5 })
-  }, [map, place])
+    const frame = () => {
+      const size = map.getSize()
+      const viewport = computeMapViewport(context, {
+        width: size.x, height: size.y, tileSize: TILE_SIZE_RASTER,
+        padding: { top: 88, right: 72, bottom: 92, left: 72 },
+        maxZoom: Math.min(15, map.getMaxZoom()), singlePlaceZoom: 14,
+      })
+      if (!viewport) return
+      const animate = !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+      map.flyTo(viewport.center, Math.floor(viewport.zoom), { animate, duration: 0.5 })
+    }
+    frame()
+    map.on('resize', frame)
+    return () => { map.off('resize', frame) }
+  }, [map, place, contextKey]) // eslint-disable-line react-hooks/exhaustive-deps
   return null
 }
 
@@ -118,6 +132,8 @@ function FocusPlaceCamera({ place }: { place: FocusedPlace | null }) {
  * map and the list can never disagree on which day is open.
  */
 export function LinkedMap({ places, line, orderByPlace, cartoApiKey, days, selectedDay, onSelectDay, focusedPlace, onClearFocus }: LinkedMapProps) {
+  const focusContext = focusedPlace ? focusRouteContext(focusedPlace, line) : []
+  const contextIds = new Set(focusContext.map(p => p.id))
   // The card's own size, read before the map mounts. Framing for the browser window
   // instead zoomed a card a fraction of its size far too close, and the fit below
   // then skipped the correction because it believed the map had opened framed (#2549).
@@ -157,7 +173,7 @@ export function LinkedMap({ places, line, orderByPlace, cartoApiKey, days, selec
 
   return (
     // `isolate` keeps Leaflet's pane z-indexes inside the card, under the sticky tab bar.
-    <div ref={cardRef} id="static-trip-map" data-focused-place={focusedPlace?.id ?? ''} className="relative isolate h-full w-full scroll-mt-20 overflow-hidden rounded-2xl border border-edge-faint bg-surface-tertiary shadow-sm">
+    <div ref={cardRef} id="static-trip-map" data-focused-place={focusedPlace?.id ?? ''} data-context-places={focusContext.map(p => p.id).join(',')} className="relative isolate h-full w-full scroll-mt-20 overflow-hidden rounded-2xl border border-edge-faint bg-surface-tertiary shadow-sm">
       {card && <MapContainer
         center={initialView.center}
         zoom={initialView.zoom}
@@ -173,7 +189,7 @@ export function LinkedMap({ places, line, orderByPlace, cartoApiKey, days, selec
           <TileLayer url={basemap.url} attribution={attributionForTile(basemap.url)} referrerPolicy="strict-origin-when-cross-origin" />
         )}
         <FitBoundsToPlaces places={places} framedOnMount={measured && framed !== null} focusedPlace={focusedPlace} />
-        <FocusPlaceCamera place={focusedPlace} />
+        <FocusPlaceCamera place={focusedPlace} context={focusContext} />
         {selectedDay != null && line.length > 1 && (
           <Polyline
             positions={line.map(p => [p.lat, p.lng])}
@@ -187,16 +203,22 @@ export function LinkedMap({ places, line, orderByPlace, cartoApiKey, days, selec
         )}
         {/* Clustered like the planner's map, so nearby stops stay tappable (#2343). */}
         <MarkerClusterGroup {...CLUSTER_OPTIONS} iconCreateFunction={createClusterIcon}>
-          {places.filter(p => p.id !== focusedPlace?.id).map(p => (
+          {places.filter(p => !contextIds.has(p.id)).map(p => (
             <Marker key={p.id} position={[p.lat, p.lng]} icon={createMarkerIcon(p, orderByPlace[p.id] ?? null)}>
               <Tooltip>{p.name}</Tooltip>
             </Marker>
           ))}
         </MarkerClusterGroup>
+        {/* Adjacent stops stay individually visible at the contextual zoom. */}
+        {focusContext.filter(p => p.id !== focusedPlace?.id).map(p => (
+          <Marker key={`context-${p.id}`} position={[p.lat, p.lng]} icon={createMarkerIcon(p, orderByPlace[p.id] ?? null)} zIndexOffset={500}>
+            <Tooltip>{p.name}</Tooltip>
+          </Marker>
+        ))}
         {focusedPlace && <>
           <CircleMarker center={[focusedPlace.lat, focusedPlace.lng]} radius={25} pathOptions={{ color: '#0a84ff', weight: 3, fillOpacity: 0.12 }} interactive={false} />
           <Marker position={[focusedPlace.lat, focusedPlace.lng]} icon={createMarkerIcon(focusedPlace, orderByPlace[focusedPlace.id] ?? null)} zIndexOffset={1000}>
-            <Tooltip permanent direction="top" opacity={1}>{focusedPlace.name}</Tooltip>
+            <Tooltip permanent direction="auto" className="static-focus-tooltip" opacity={1}>{focusedPlace.name}</Tooltip>
           </Marker>
         </>}
       </MapContainer>}

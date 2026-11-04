@@ -69,7 +69,9 @@ export function LinkedPlanView({ data, selectedDay, onSelectDay, onPickDayOnMap,
     })
   }
   const mapPlaces = selectedDay ? located(dayAssignments) : (data.places || []).filter(p => p?.lat && p?.lng)
-  const dayLine = located(dayAssignments.filter(a => a.accommodation_id == null))
+  // Keep return visits in the route even though the marker pool is deduplicated.
+  const dayLine = dayAssignments.filter(a => a.accommodation_id == null).flatMap(a =>
+    a.place?.lat != null && a.place?.lng != null ? [{ ...a.place, stopId: a.id }] : [])
 
   return (
     <div className="grid gap-5 lg:grid-cols-[minmax(0,460px)_minmax(0,1fr)]">
@@ -128,6 +130,7 @@ export function LinkedPlanView({ data, selectedDay, onSelectDay, onPickDayOnMap,
               categories={data.categories || []}
               travelOnly={travelOnly}
               selectedPlaceId={selectedDay === day.id ? focusedPlace?.id : null}
+              selectedStopId={selectedDay === day.id ? focusedPlace?.stopId : null}
               onLocatePlace={place => onLocatePlace(day.id, place)}
             />
           )

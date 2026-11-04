@@ -33,6 +33,7 @@ export interface LinkedDayCardProps {
   stopNumber: Record<number, number>
   categories: { id: number; color?: string | null; icon?: string | null }[]
   selectedPlaceId?: number | null
+  selectedStopId?: number | null
   onLocatePlace: (place: PlaceTarget) => void
   /** A "travel and stays" link (#1712) counts no places and says nothing about an empty plan. */
   travelOnly?: boolean
@@ -105,8 +106,8 @@ export function LinkedDayCard(p: LinkedDayCardProps) {
                   notes={item.data.notes}
                   number={p.stopNumber[item.data.id]}
                   category={p.categories.find(c => c.id === item.data.place.category_id) ?? item.data.place.category ?? null}
-                  selected={p.selectedPlaceId === item.data.place.id}
-                  onLocate={p.onLocatePlace}
+                  selected={p.selectedPlaceId === item.data.place.id && (p.selectedStopId == null || p.selectedStopId === item.data.id)}
+                  onLocate={place => p.onLocatePlace({ ...place, stopId: item.data.id })}
                 />
               )
             })

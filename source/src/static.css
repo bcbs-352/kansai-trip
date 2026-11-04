@@ -19,3 +19,12 @@ button, a, input, textarea { touch-action: manipulation; }
   .print-trip h2 { font-size: 16pt; font-weight: bold; margin-top: 20pt; }
   .print-trip p, .print-trip li { margin-top: 7pt; white-space: pre-wrap; }
 }
+.static-focus-tooltip.leaflet-tooltip {
+  width: max-content;
+  max-width: min(220px, 40vw);
+  white-space: normal;
+  line-height: 1.4;
+  text-align: center;
+}
+.static-focus-tooltip.leaflet-tooltip-right { margin-left: 20px; }
+.static-focus-tooltip.leaflet-tooltip-left { margin-left: -20px; }
