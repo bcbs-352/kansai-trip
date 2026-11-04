@@ -28,7 +28,7 @@ export default function StaticTripPage() {
         <SharedHero trip={data.trip} stats={[{ key: 'days', value: 5, label: '天' }, { key: 'places', value: Object.keys(trip.places).length, label: '地点与候选' }, { key: 'bookings', value: data.reservations.length, label: '交通与住宿记录' }]} />
         <div className="mt-4 rounded-2xl border border-edge-faint bg-surface-card p-4 text-caption leading-relaxed text-content-secondary">
           <strong className="text-content">11/30 宇治至少到中午 · 12/1 岚山小火车 12:30–12:56 · 12/2 关西机场 09:20 起飞</strong>
-          <p className="mt-1">点击地点图标或名称可在地图中定位。地图虚线表示游览顺序，实际道路与接驳请打开 Google Maps。个人备忘与勾选仅保存在当前浏览器。</p>
+          <p className="mt-1">点击地点图标或名称可在地图中定位。12月1日可查看小火车轨道和车站；蓝色虚线表示顺序，步行与换乘路线请打开 Google Maps。个人备忘与勾选仅保存在当前浏览器。</p>
         </div>
         <div className="static-tabs"><SharedTabBar tabs={tabs} active={state.tab} onChange={state.setTab} /></div>
         <div className="pb-6">

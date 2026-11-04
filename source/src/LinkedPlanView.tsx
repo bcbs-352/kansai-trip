@@ -1,5 +1,6 @@
 // Adapted from TREK 5.1.0 (dc36c21c), AGPL-3.0. Static-only map linkage.
 import { getMergedItems, getTransportForDay, hidesOnMiddleDay } from '../utils/dayMerge'
+import { useState } from 'react'
 import { isDayInAccommodationRange } from '../utils/dayOrder'
 import { LinkedDayCard } from './LinkedDayCard'
 import { LinkedMap, type MapPlace } from './LinkedMap'
@@ -45,6 +46,11 @@ interface LinkedPlanViewProps {
  * and the days follow under it.
  */
 export function LinkedPlanView({ data, selectedDay, onSelectDay, onPickDayOnMap, collapsedDays, onToggleDay, focusedPlace, onLocatePlace, onClearFocus, travelOnly = false }: LinkedPlanViewProps) {
+  const [railViewRequest, setRailViewRequest] = useState<{ serial: number; stationIndex?: number }>({ serial: 0 })
+  const showRailway = (stationIndex?: number) => {
+    onPickDayOnMap(4)
+    setRailViewRequest(previous => ({ serial: previous.serial + 1, stationIndex }))
+  }
   const days = [...(data.days || [])].sort((a, b) => a.day_number - b.day_number)
   const assignments = data.assignments || {}
 
@@ -86,6 +92,7 @@ export function LinkedPlanView({ data, selectedDay, onSelectDay, onPickDayOnMap,
           onSelectDay={onPickDayOnMap}
           focusedPlace={focusedPlace}
           onClearFocus={onClearFocus}
+          railViewRequest={railViewRequest}
         />
       </div>
 
@@ -132,6 +139,7 @@ export function LinkedPlanView({ data, selectedDay, onSelectDay, onPickDayOnMap,
               selectedPlaceId={selectedDay === day.id ? focusedPlace?.id : null}
               selectedStopId={selectedDay === day.id ? focusedPlace?.stopId : null}
               onLocatePlace={place => onLocatePlace(day.id, place)}
+              onShowRailway={day.day_number === 4 ? showRailway : undefined}
             />
           )
         })}

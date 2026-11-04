@@ -16,6 +16,7 @@ import { safeHexColor } from '../utils/safeColor'
 import { SharedPlaceDetails, type SharedPlaceLike } from '../pages/sharedTrip/SharedPlaceDetails'
 import { spanLabelKey, transportFacts, type SharedTransport } from '../pages/sharedTrip/sharedTripModel'
 import type { PlaceTarget } from './placeFocus'
+import rail from './saganoRail.json'
 
 const DAY_HEAD_SELECTED = 'color-mix(in srgb, var(--accent) 12%, transparent)'
 
@@ -35,6 +36,7 @@ export interface LinkedDayCardProps {
   selectedPlaceId?: number | null
   selectedStopId?: number | null
   onLocatePlace: (place: PlaceTarget) => void
+  onShowRailway?: (stationIndex?: number) => void
   /** A "travel and stays" link (#1712) counts no places and says nothing about an empty plan. */
   travelOnly?: boolean
 }
@@ -96,7 +98,7 @@ export function LinkedDayCard(p: LinkedDayCardProps) {
             <p className="px-2 py-2.5 text-content-faint" style={fs(12, 'body')}>{t('dayplan.emptyDay')}</p>
           ) : (
             p.items.map(item => {
-              if (item.type === 'transport') return <TransportRow key={item.data.__leg ? `t-${item.data.id}-leg${item.data.__leg.index}` : `t-${item.data.id}`} r={item.data} dayId={day.id} />
+              if (item.type === 'transport') return <div key={item.data.__leg ? `t-${item.data.id}-leg${item.data.__leg.index}` : `t-${item.data.id}`}><TransportRow r={item.data} dayId={day.id} />{p.onShowRailway && item.data.title.includes('嵯峨野8号') && <RailwayDetails onShow={p.onShowRailway} />}</div>
               if (item.type === 'note') return <NoteRow key={`n-${item.data.id}`} note={item.data} />
               if (!item.data.place) return null
               return (
@@ -116,6 +118,20 @@ export function LinkedDayCard(p: LinkedDayCardProps) {
       )}
     </article>
   )
+}
+
+function RailwayDetails({ onShow }: { onShow: (stationIndex?: number) => void }) {
+  const directions = (from: string, to: string) => `https://www.google.com/maps/dir/?${new URLSearchParams({ api: '1', origin: from, destination: to, travelmode: 'walking' })}`
+  return <div className="mx-1 mb-1 rounded-xl border border-edge-faint bg-surface-tertiary px-3 py-3 text-caption text-content-secondary">
+    <p className="font-semibold text-content">小火车站序</p>
+    <div className="mt-1 flex flex-wrap items-center gap-1">{rail.stations.map((station, index) => <button key={station.japanese} type="button" onClick={() => onShow(index)} className="rounded-md border border-edge bg-surface-card px-2 py-1 text-content hover:bg-surface-hover" aria-label={`在地图定位${station.name}`}>{index + 1} {station.name.replace('小火车', '')}</button>)}</div>
+    <p className="mt-1">12:30 龟冈上车 · 12:56 嵯峨下车；保津峡、岚山为途中经过站。</p>
+    <button type="button" onClick={() => onShow()} className="mt-2 rounded-lg bg-accent px-3 py-1.5 font-semibold text-accent-text">在地图查看小火车轨道和车站</button>
+    <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+      <a target="_blank" rel="noopener noreferrer" className="text-accent-on underline" href={directions(rail.transfer.japanese, rail.stations[0].japanese)}>JR马堀 → 小火车龟冈 · 步行导航 ↗</a>
+      <a target="_blank" rel="noopener noreferrer" className="text-accent-on underline" href={directions(rail.stations[3].japanese, '常寂光寺 京都')}>小火车嵯峨 → 常寂光寺 · 步行导航 ↗</a>
+    </div>
+  </div>
 }
 
 /** A stay on this day, its check-in green and its check-out red, as the planner marks them. */

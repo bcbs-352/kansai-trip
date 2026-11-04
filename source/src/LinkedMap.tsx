@@ -2,7 +2,7 @@
 import L from 'leaflet'
 import { createElement, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { CircleMarker, MapContainer, Marker, Polyline, TileLayer, Tooltip, useMap } from 'react-leaflet'
+import { CircleMarker, MapContainer, Marker, Polyline, Popup, TileLayer, Tooltip, useMap } from 'react-leaflet'
 import MarkerClusterGroup from 'react-leaflet-cluster'
 // MapView brings these sheets for the planner, and this page never mounts it.
 import 'leaflet.markercluster/dist/MarkerCluster.css'
@@ -19,6 +19,7 @@ import { computeMapViewport, TILE_SIZE_RASTER } from '../utils/mapViewport'
 import { safeHexColor } from '../utils/safeColor'
 import { resolveBasemap } from '../utils/tileUrl'
 import { focusRouteContext, type FocusedPlace, type PlaceTarget } from './placeFocus'
+import rail from './saganoRail.json'
 
 // Injected into Leaflet's marker HTML, where CSS variables cannot reach, the same
 // reason MapView.tsx is exempt from theme:lint outright.
@@ -101,6 +102,7 @@ interface LinkedMapProps {
   onSelectDay: (id: number | null) => void
   focusedPlace: FocusedPlace | null
   onClearFocus: () => void
+  railViewRequest: { serial: number; stationIndex?: number }
 }
 
 function FocusPlaceCamera({ place, context }: { place: FocusedPlace | null; context: PlaceTarget[] }) {
@@ -126,12 +128,28 @@ function FocusPlaceCamera({ place, context }: { place: FocusedPlace | null; cont
   return null
 }
 
+function RailwayCamera({ request }: { request: { serial: number; stationIndex?: number } }) {
+  const map = useMap()
+  useEffect(() => {
+    if (!request.serial) return
+    const index = request.stationIndex
+    const stops = index == null ? [...rail.stations, rail.transfer] : rail.stations.slice(Math.max(0, index - 1), index + 2)
+    const bounds = L.latLngBounds(stops.map(s => [s.lat, s.lng]))
+    map.flyToBounds(bounds, { paddingTopLeft: [72, 85], paddingBottomRight: [72, 85], maxZoom: 14, duration: 0.5, animate: !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches })
+  }, [map, request])
+  return null
+}
+
+function railwayIcon(label: string, transfer = false) {
+  return L.divIcon({ className: '', iconSize: [28, 28], iconAnchor: [14, 14], html: `<span style="display:grid;place-items:center;width:28px;height:28px;border:2px solid white;border-radius:${transfer ? '7px' : '50%'};background:${transfer ? '#405974' : '#bd4e37'};color:white;font-weight:700;font-size:${transfer ? '10px' : '12px'};box-shadow:0 1px 5px #0005">${label}</span>` })
+}
+
 /**
  * The trip on a map, with the days as chips floating over its top edge the
  * way the planner floats its filters: the same setter as the day cards, so the
  * map and the list can never disagree on which day is open.
  */
-export function LinkedMap({ places, line, orderByPlace, cartoApiKey, days, selectedDay, onSelectDay, focusedPlace, onClearFocus }: LinkedMapProps) {
+export function LinkedMap({ places, line, orderByPlace, cartoApiKey, days, selectedDay, onSelectDay, focusedPlace, onClearFocus, railViewRequest }: LinkedMapProps) {
   const focusContext = focusedPlace ? focusRouteContext(focusedPlace, line) : []
   const contextIds = new Set(focusContext.map(p => p.id))
   // The card's own size, read before the map mounts. Framing for the browser window
@@ -148,6 +166,9 @@ export function LinkedMap({ places, line, orderByPlace, cartoApiKey, days, selec
       cardRef.current?.scrollIntoView?.({ behavior: 'smooth', block: 'start' })
     }
   }, [focusedPlace])
+  useEffect(() => {
+    if (railViewRequest.serial && window.matchMedia?.('(max-width: 1023px)').matches) cardRef.current?.scrollIntoView?.({ behavior: 'smooth', block: 'start' })
+  }, [railViewRequest])
   // A card with no layout yet (hidden, or a test DOM) has nothing to frame against,
   // so the map opens near the places and the first fit does the real framing.
   const measured = card !== null && card.width > 0 && card.height > 0
@@ -190,17 +211,23 @@ export function LinkedMap({ places, line, orderByPlace, cartoApiKey, days, selec
         )}
         <FitBoundsToPlaces places={places} framedOnMount={measured && framed !== null} focusedPlace={focusedPlace} />
         <FocusPlaceCamera place={focusedPlace} context={focusContext} />
-        {selectedDay != null && line.length > 1 && (
-          <Polyline
-            positions={line.map(p => [p.lat, p.lng])}
-            // Dashed and straight on purpose: it shows the order of the day's stops,
-            // not the roads between them. A real route would mean sending the
-            // itinerary to a third party for every anonymous visitor of a shared
-            // link, with no way for the trip's owner to opt out.
-            pathOptions={{ color: '#0a84ff', weight: 3, opacity: 0.85, dashArray: '6 8', lineCap: 'round' }} // theme-lint-disable
-            interactive={false}
-          />
-        )}
+        <RailwayCamera request={railViewRequest} />
+        {selectedDay != null && line.slice(1).map((p, index) => {
+          const previous = line[index]
+          // The booked train sits between these two stops; do not draw a fictitious direct connection.
+          if (selectedDay === 4 && previous.name === '东福寺' && p.name === '常寂光寺') return null
+          return <Polyline key={`${previous.stopId}-${p.stopId}`} positions={[[previous.lat, previous.lng], [p.lat, p.lng]]} pathOptions={{ color: '#0a84ff', weight: 3, opacity: 0.7, dashArray: '6 8', lineCap: 'round' }} interactive={false} />
+        })}
+        {selectedDay === 4 && <>
+          {rail.segments.map((segment, index) => <Polyline key={`rail-${index}`} positions={segment as [number, number][]} pathOptions={{ color: '#bd4e37', weight: 5, opacity: 0.9 }} interactive={false} />)}
+          {rail.stations.map((station, index) => <Marker key={station.japanese} position={[station.lat, station.lng]} icon={railwayIcon(String(index + 1))} title={station.name} zIndexOffset={800}>
+            <Tooltip direction="top">{station.name}</Tooltip>
+            <Popup><strong>{station.name}</strong><br />{station.japanese}<br />{station.role}<br /><a target="_blank" rel="noopener noreferrer" href={`https://www.google.com/maps/search/?${new URLSearchParams({ api: '1', query: station.japanese })}`}>在 Google Maps 查看</a></Popup>
+          </Marker>)}
+          <Marker position={[rail.transfer.lat, rail.transfer.lng]} icon={railwayIcon('JR', true)} title={rail.transfer.name} zIndexOffset={800}>
+            <Tooltip direction="top">JR马堀站</Tooltip><Popup><strong>JR马堀站</strong><br />前往小火车龟冈站的接驳站。</Popup>
+          </Marker>
+        </>}
         {/* Clustered like the planner's map, so nearby stops stay tappable (#2343). */}
         <MarkerClusterGroup {...CLUSTER_OPTIONS} iconCreateFunction={createClusterIcon}>
           {places.filter(p => !contextIds.has(p.id)).map(p => (
@@ -224,6 +251,7 @@ export function LinkedMap({ places, line, orderByPlace, cartoApiKey, days, selec
       </MapContainer>}
 
       {days.length > 0 && <DayPicker days={days} selectedDay={selectedDay} onSelectDay={onSelectDay} />}
+      {selectedDay === 4 && <div className="absolute right-3 top-14 z-[1000] rounded-lg bg-surface-card px-2 py-1 text-caption text-content shadow-sm">红色：小火车轨道 · 蓝虚线：顺序示意</div>}
       {focusedPlace && <div className="absolute bottom-7 start-3 z-[1000] flex max-w-[calc(100%-24px)] items-center gap-3 rounded-xl border border-edge bg-surface-card px-3 py-2 text-caption shadow-md" role="status">
         <span className="min-w-0 truncate font-semibold text-content">已定位：{focusedPlace.name}</span>
         <button type="button" onClick={onClearFocus} className="flex-none font-semibold text-accent-on underline underline-offset-2">返回整日视图</button>
